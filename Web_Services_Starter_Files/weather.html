@@ -9,7 +9,7 @@
     <!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	<style>
-		#thermometer_inner { width: 95%; height: 20%; margin:2.5%; background: red; position:absolute; bottom:0;}
+		#thermometer_inner { width: 95%; height: 20%; margin:2.5%; background: grey; position:absolute; bottom:0;}
 		#thermometer_outer {height:400px; position:relative;}
 		#temp_today { color:white; text-align:center; position:relative; top:50%; }
 	</style>
@@ -77,6 +77,11 @@
         document.getElementById("icon_today").innerHTML = data.currently.icon;
         document.getElementById("temp_today").innerHTML = data.currently.temperature;
         document.getElementById("thermometer_inner").style.height = data.currently.temperature + "%";
+        if (data.currently.temperature > 85) {
+          document.getElementById("thermometer_inner").style.background = "red";
+        } else if (data.currently.temperature < 65) {
+          document.getElementById("thermometer_inner").style.background = "blue";
+        }
         document.getElementById("precip_today").innerHTML = data.currently.precipProbability*100 + "%"; //convert probability to percentage
         document.getElementById("humidity_today").innerHTML = data.currently.humidity*100 + "%"; //convert probability to percentage
         document.getElementById("wind_today").innerHTML = data.currently.windSpeed;
